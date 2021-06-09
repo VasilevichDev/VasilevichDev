@@ -10,9 +10,7 @@ import com.example.hardstart.R
 
 class PlantsActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_plants)
+
 
 
          val adapter = PlantAdapter()
@@ -23,7 +21,11 @@ class PlantsActivity : AppCompatActivity() {
             R.drawable.some_flowers,
             R.drawable.some_flowers_two
         )
-
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_plants)
+            init()
+        }
         var index = 0
 
          val buttonAdd = findViewById<Button>(R.id.btn_add)!!
@@ -33,17 +35,14 @@ class PlantsActivity : AppCompatActivity() {
 
 
         fun init() {
-            rcView.layoutManager = GridLayoutManager(this@PlantsActivity, 3)
-            rcView.adapter = adapter
-            buttonAdd.setOnClickListener {
-                if (index > 3) index = 0
-                val plant = Plant(imageIdList[0], "Plant $index")
-                adapter.addPlant(plant)
-                index++
-            }
+                rcView.layoutManager = GridLayoutManager(this@PlantsActivity, 3)
+                rcView.adapter = adapter
+                buttonAdd.setOnClickListener {
+                    if (index > 3) index = 0
+                    val plant = Plant(imageIdList[0], "Plant $index")
+                    adapter.addPlant(plant)
+                    index++
+                }
+
         }
-
-
-
     }
-}
